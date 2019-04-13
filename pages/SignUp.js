@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, ImageBackground, Image} from 'react-native';
+import {StyleSheet, Text, ImageBackground, Image, View, Button} from 'react-native';
 import CircleInput from '../components/CircleInput';
 import background from '../images/Fluorescent-Gradient-Final.jpg';
 import logo from '../images/Logo_transparent_whitedots.png';
@@ -16,6 +16,7 @@ export default class SignUpScreen extends Component {
   constructor(props){
     super(props);
     this.updateValue = this.updateValue.bind(this);
+    this.back = this.back.bind(this);
     this.signup = this.signup.bind(this);
     this.state = {
       color: ["black","black","black"]
@@ -30,6 +31,10 @@ export default class SignUpScreen extends Component {
     this.err = [  <Text style={{color:"transparent"}}>placeholder</Text>,
                   <Text style={{color:"transparent"}}>placeholder</Text>,
                   <Text style={{color:"transparent"}}>placeholder</Text>];
+  }
+
+  back(){
+    this.props.navigation.navigate('Login');
   }
 
   signup(){
@@ -120,6 +125,17 @@ export default class SignUpScreen extends Component {
               name='LOGIN'
               onPress={this.signup}
             />
+            <View style={styles.back}>
+              <Button 
+                title="< Back" 
+                activeOpacity = {.75}
+                style={{
+                  flex: 1,
+                  flexDirection:'row', 
+                  flexWrap:'wrap'
+                }}
+                onPress={this.back}/>
+            </View>
         </ImageBackground>
       );
     }
@@ -140,4 +156,15 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginBottom: '-20%',
   },
+  back:{
+    margin:0,
+    padding: 0,
+    position: "absolute",
+    top: 50,
+    left: 10,
+    alignItems:'center',
+    flex: 1,
+    flexDirection:'row', 
+    flexWrap:'wrap'
+  }
 });
